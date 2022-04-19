@@ -23,7 +23,7 @@ init();
 const resolvers = {
   students: getAllStudents,
   studentData: getStudentById,
-  addstudent: async ({name, roll, dob, std}) => {
+  addStudent: async ({name, roll, dob, std}) => {
     console.log("hi")
   try {
     let addedStu = await StudentModel.create({
