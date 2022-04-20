@@ -3,10 +3,10 @@ import { buildSchema } from "graphql";
 export const graphqlSchema = buildSchema(`
     
     type student{
-                    name: String,
-                    roll: Int,
-                    dob: String,
-                    std: Int
+                    Name: String,
+                    Roll: Int,
+                    Dob: String,
+                    Std: Int
                 }
 
     type Query {
@@ -16,7 +16,7 @@ export const graphqlSchema = buildSchema(`
     
     type Mutation{
         addStudent(Name: String, Roll: Int, Dob: String, Std: Int):student,
-        updateStudent(Name:String,Roll:Int,Dob:String,Std:Int):student,
+        updateStudentData(Name:String,Roll:Int,Dob:String,Std:Int):student,
         deleteStudent(Roll:Int):student
     }
 `);

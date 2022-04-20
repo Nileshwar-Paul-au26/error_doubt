@@ -4,7 +4,6 @@ import { graphqlHTTP } from "express-graphql";
 
 import { init } from "./db.js";
 import { graphqlSchema } from "./model/graphqlSchema.js";
-import {StudentModel} from "./model/studentSchema.js";
 import {
   getAllStudents,
   getStudentById,
@@ -16,27 +15,13 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
 
-
 //connect to DB
 init();
 
 const resolvers = {
   students: getAllStudents,
   studentData: getStudentById,
-  addStudent: async ({name, roll, dob, std}) => {
-    console.log("hi")
-  try {
-    let addedStu = await StudentModel.create({
-      Name: name,
-      Roll: roll,
-      Dob: dob,
-      Std: std,
-    });
-    return addedStu;
-  } catch (err) {
-    return err.message;
-  }
-},
+  addStudent: addStudentData,
   updateStudent: updateStudentData,
   deleteStudent: deleteStudentdata,
 };

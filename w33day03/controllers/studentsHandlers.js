@@ -1,8 +1,10 @@
 import { StudentModel } from "../model/studentSchema.js";
 
 const getAllStudents = async () => {
+  console.log("hi")
   try {
     let data = await StudentModel.find({});
+    console.log("data",data)
     return data;
   } catch (err) {
     return err.message;
@@ -11,6 +13,7 @@ const getAllStudents = async () => {
 
 const getStudentById = async (args) => {
     let roll=args.roll
+    console.log(roll)
   try {
     let data = await StudentModel.findById({ Roll: roll });
     return data;
@@ -19,15 +22,17 @@ const getStudentById = async (args) => {
   }
 };
 
-const addStudentData = async ({name, roll, dob, std}) => {
-    console.log(name)
+const addStudentData = async({Name:name, Roll:roll, Dob:dob, Std:std}) => {
+    console.log(name,roll,dob,std);
   try {
-    let addedStu = await StudentModel.create({
+    let newuser={
       Name: name,
       Roll: roll,
       Dob: dob,
       Std: std,
-    });
+    }
+    let addedStu = await StudentModel.create(newuser);
+    console.log(addedStu)
     return addedStu;
   } catch (err) {
     return err.message;
@@ -36,8 +41,10 @@ const addStudentData = async ({name, roll, dob, std}) => {
 
 const updateStudentData = async ({name, roll, dob, std}) => {
   updatedata = { Namee: name, Dob: dob, Std: std };
+  console.log(updatedata);
   try {
     let data = await StudentModel.findByIdAndUpdate(roll, updatedata);
+    return data
   } catch (err) {
     return err.message;
   }
@@ -54,9 +61,5 @@ const deleteStudentdata = async ( args) => {
 };
 
 export {
-  getAllStudents,
-  getStudentById,
-  addStudentData,
-  updateStudentData,
-  deleteStudentdata,
+  getAllStudents,getStudentById,addStudentData,updateStudentData,deleteStudentdata
 };
